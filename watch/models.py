@@ -35,7 +35,7 @@ class Profile(models.Model):
         details = Profile.objects.filter(user = id).first()
         return details
     
-#     @classmethod
-#     def search_user(cls, name):
-#         userprof = Profile.objects.filter(user__username__icontains = name)
-#         return userprof
+    @classmethod
+    def search_user(cls, name):
+        userprof = Profile.objects.filter(user__username__icontains = name)
+        return userprof
