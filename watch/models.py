@@ -19,7 +19,7 @@ class Profile(models.Model):
     Profile_photo = models.ImageField(upload_to = 'images/',blank=True)
     Bio = models.TextField(max_length = 50,null = True)
     user = models.OneToOneField(User,on_delete=models.CASCADE, primary_key=True)
-    # neighbourhood = models.ManyToManyField('Neighborhood', related_name='neighborhood',max_length=30)
+    neighbourhood = models.ManyToManyField('Neighborhood', related_name='neighborhood',max_length=30)
     # business = models.ManyToManyField('Business',related_name='business',null=True)
 
     def save_profile(self):
@@ -39,3 +39,10 @@ class Profile(models.Model):
     def search_user(cls, name):
         userprof = Profile.objects.filter(user__username__icontains = name)
         return userprof
+
+class NeighbourHood(models.Model):
+    name = models.ImageField(upload_to = 'images/',blank=True)
+    location = models.TextField(max_length = 50,null = True)
+    occupants = models.TextField(max_length = 50,null = True)
+    Admin = models.ForeignKey(related_name='user')
+    user = models.OneToOneField(User,on_delete=models.CASCADE, primary_key=True)
