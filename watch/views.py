@@ -23,3 +23,5 @@ def convert_dates(dates):
 def home_page(request):
     date = dt.date.today()
     return render(request,'home.html',locals())
+def logout(request):
+    return render(request, 'home.html')
