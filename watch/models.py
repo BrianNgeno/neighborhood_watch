@@ -15,14 +15,15 @@ def create_user_profile(sender, instance, created, **kwargs):
 def save_user_profile(sender, instance, **kwargs):
     instance.profile.save()
 
-# class Profile(models.Model):
-#     Profile_photo = models.ImageField(upload_to = 'images/',blank=True)
-#     Bio = models.TextField(max_length = 50,null = True)
-#     user = models.OneToOneField(User,on_delete=models.CASCADE, primary_key=True)
-#     rate = models.ManyToManyField('Project', related_name='image',max_length=30)
+class Profile(models.Model):
+    Profile_photo = models.ImageField(upload_to = 'images/',blank=True)
+    Bio = models.TextField(max_length = 50,null = True)
+    user = models.OneToOneField(User,on_delete=models.CASCADE, primary_key=True)
+    # neighbourhood = models.ManyToManyField('Neighborhood', related_name='neighborhood',max_length=30)
+    # business = models.ManyToManyField('Business',related_name='business',null=True)
 
-#     def save_profile(self):
-#         self.save()
+    def save_profile(self):
+        self.save()
 
 #     @classmethod
 #     def get_by_id(cls, id):
