@@ -30,10 +30,10 @@ class Profile(models.Model):
         details = Profile.objects.get(user = id)
         return details
 
-#     @classmethod
-#     def filter_by_id(cls, id):
-#         details = Profile.objects.filter(user = id).first()
-#         return details
+    @classmethod
+    def filter_by_id(cls, id):
+        details = Profile.objects.filter(user = id).first()
+        return details
     
 #     @classmethod
 #     def search_user(cls, name):
