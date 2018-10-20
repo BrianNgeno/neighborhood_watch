@@ -18,3 +18,7 @@ def convert_dates(dates):
     '''
     day = days[day_number]
     return day
+
+def home_page(request):
+    date = dt.date.today()
+    return render(request,'home.html',locals())
