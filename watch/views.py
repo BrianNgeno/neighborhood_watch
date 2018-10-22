@@ -4,7 +4,7 @@ from django.contrib.auth.decorators import login_required
 from .models import Profile,User,Post,Business,NeighborHood
 from django.contrib.auth.models import User
 import datetime as dt
-from .forms import BusinessForm,ProfileForm
+from .forms import BusinessForm,ProfileForm,HoodForm
 
 # Create your views here.
 
@@ -58,3 +58,16 @@ def upload_business(request):
     else:
         businessform = BusinessForm()
     return render(request,'Business.html',locals())
+
+@login_required(login_url='/accounts/login')
+def add_hood(request):
+    if request.method == 'POST':
+        hoodform = HoodForm(request.POST, request.FILES)
+        if hoodform.is_valid():
+            upload = hoodform.save(commit=False)
+            upload.profile = request.user.profile
+            upload.save()
+            return redirect('home_page')
+    else:
+        hoodform = HoodForm()
+    return render(request,'add-hood.html',locals()

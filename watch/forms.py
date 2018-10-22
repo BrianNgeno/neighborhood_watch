@@ -13,7 +13,7 @@ class ProfileForm(forms.ModelForm):
         model = Profile
         exclude = ['user','neighborhood','business']
 
-class NeighborhoodForm(forms.ModelForm):
+class HoodForm(forms.ModelForm):
     class Meta:
         model = NeighborHood
         exclude= ['user']
