@@ -18,8 +18,12 @@ class HoodForm(forms.ModelForm):
         model = NeighborHood
         exclude= ['occupants']
 
+class PostForm(forms.ModelForm):
+    class Meta:
+        model = Comment
+        exclude = ['user']
 
 class CommentForm(forms.ModelForm):
     class Meta:
         model = Comment
-        exclude= ['user','neighborHood']
+        Fields = ['name']

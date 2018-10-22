@@ -11,6 +11,7 @@ urlpatterns=[
     url(r'^join(?P<neighborhood_id>\d+)',views.join, name='join'),
     url(r'^leave(?P<neighborhood_id>\d+)',views.leave, name='leave'),
     url(r'^one_hood(?P<neighborhood_id>\d+)',views.hood, name='hood'),
+    url(r'^comment/(?P<post_id>\d+)', views.one_post, name='comment'),
 
 ]
 if settings.DEBUG:

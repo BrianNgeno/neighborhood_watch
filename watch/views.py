@@ -1,10 +1,10 @@
 from django.shortcuts import render,redirect,get_object_or_404
 from django.http import HttpResponse,Http404
 from django.contrib.auth.decorators import login_required
-from .models import Profile,User,Post,Business,NeighborHood,Post
+from .models import Profile,User,Post,Business,NeighborHood
 from django.contrib.auth.models import User
 import datetime as dt
-from .forms import BusinessForm,ProfileForm,HoodForm
+from .forms import BusinessForm,ProfileForm,HoodForm,PostForm,CommentForm
 
 # Create your views here.
 
@@ -97,3 +97,15 @@ def hood(request,neighborhood_id):
     single_hood = Post.get_hood_posts(id = neighborhood_id)
 
     return render(request,'hood.html',locals())
+
+def one_post(request,image_id):
+    image = get_object_or_404(Image, pk=image_id)
+    if request.method == 'POST':
+        form = CommentForm(request.POST)
+        if form.is_valid():
+            comment = form.save(commit=False)
+            comment.user = request.user
+            comment.image = image
+            comment.save()
+        return render(request, 'main_pages/commentspace.html', locals())
+    return redirect('home_page')

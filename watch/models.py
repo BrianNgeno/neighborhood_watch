@@ -117,5 +117,5 @@ class Comment(models.Model):
 
     @classmethod
     def find_commentpost(cls,id):
-        comments = Comments.objects.filter(image__pk = id)
+        comments = Comments.objects.filter(post__pk = id)
         return comments
