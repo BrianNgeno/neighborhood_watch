@@ -3,45 +3,25 @@
 {% block content %}
 {{ block.super }}
 <div class="container-fluid" id="pro">
-    <p>work</p>
-   <!--  <div class="row">
+
+    <div class="row">
 
 
-        <div class="card mb-3" id="like">
-            <div class="card-header">
-                <a href="profile/{{item.profile.user.username}}/">
-                    <div class="row">
-                        <div class="">
-                            {% if item.profile.Profile_photo %}
-                            <img src="{{item.profile.Profile_photo.url}}" alt="img" width="50px" height="50px" style="border-radius: 50%; margin-left: 10px;"
-                                class="img-responsive">
-                            {% endif %}
-                        </div>
-                        <div class="col-md-2" style="margin-top: 10px;font-weight: bold;">
-                            <h4 class="card-title">{{item.profile.user.username}}</h4>
-                        </div>
-                    </div>
-                </a>
-            </div>
-            <img class="card-img-top img-responsive" src="{{item.Image.url}}" alt="Card image cap" />
+        <div class="col-md-2"></div>
+        {% for hood in hoods%}
+        <div class="card col-md-4" id="hoody">
+            <img class="card-img-top img-responsive" src="{{hood.view.url}}" alt="Card image cap" height="200px;" width="300px;" />
             <div class="card-body">
 
-                <p><strong>{{item.profile.user.username}}</strong> {{item.Image_caption}}</p>
-                <p class="card-text" style="font-size:14px;"><small class="text-muted">Uploaded
-                        {{item.pub_date|timesince}}</small></p>
-                <h5><strong>Comments</strong></h5>
-                <a class="view-more"></a>
-                <div id="commentspace{{item.id}}">
-                    {% for comment in item.comment.all|slice:":5"|slice:"::-1" %}
-                    <li class="comment-list__comment" style="list-style: none;">
+                <p><strong>{{hood.name}}</strong> {{hood.location}}</p>
+                <a href="{% url 'join' hood.id %}"class="btn btn-outline-success">Join Neighborhood</a>
+                <p class="card-text" style="font-size:14px;"><small class="text-muted">Since
+                        {{hood.pub_date|timesince}}</small></p>
 
-                        <a href="{% url 'profile' }" class="user">
-                            <strong>{{ comment.user.username }}</strong>
-                        </a>
-                        <span class="comment">{{ comment.name }}</span>
-                    </li>
-                    {% endfor %}
-            
-                </div>-->
-            </div> 
-            {% endblock %}
+            </div>
+        </div>
+        {% endfor %}
+        <div class="col-md-2"></div>
+
+    </div>
+    {% endblock %}

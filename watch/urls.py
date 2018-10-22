@@ -8,6 +8,8 @@ urlpatterns=[
     url(r'^edit$', views.edit, name='edit_profile'),
     url(r'^upload/$', views.upload_business, name='upload_business'),
     url(r'^hood/$', views.add_hood, name='add_hood'),
+    url(r'^join(?P<neighborhood_id>\d+)',views.join, name='join'),
+    url(r'^leave(?P<neighborhood_id>\d+)',views.leave, name='leave'),
 ]
 if settings.DEBUG:
     urlpatterns+= static(settings.MEDIA_URL, document_root = settings.MEDIA_ROOT)

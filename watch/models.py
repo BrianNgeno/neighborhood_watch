@@ -19,7 +19,7 @@ class Profile(models.Model):
     Profile_photo = models.ImageField(upload_to = 'images/',blank=True)
     Bio = models.TextField(max_length = 50,null = True)
     user = models.OneToOneField(User,on_delete=models.CASCADE, primary_key=True)
-    neighborhood = models.ManyToManyField('Neighborhood', related_name='neighborhood',max_length=30)
+    neighborhood = models.ForeignKey('Neighborhood', related_name='neighbourhood',null=True)
     email_address = models.CharField(max_length = 50,null = True)
     business = models.ForeignKey('Business',related_name='business',null=True)
 
@@ -45,6 +45,7 @@ class NeighborHood(models.Model):
     view = models.ImageField(upload_to = 'images/',blank=True)
     name = models.CharField(max_length=50,blank=True)
     location = models.CharField(max_length = 50,null = True)
+    pub_date = models.DateTimeField(auto_now_add=True, null=True)
     occupants = models.ForeignKey(User, null = True,related_name='business')
     
     def save_hood(self):
