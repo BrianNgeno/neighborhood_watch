@@ -21,8 +21,7 @@ class Profile(models.Model):
     user = models.OneToOneField(User,on_delete=models.CASCADE, primary_key=True)
     neighborhood = models.ManyToManyField('Neighborhood', related_name='neighborhood',max_length=30)
     email_address = models.TextField(max_length = 50,null = True)
-  
-    # business = models.ManyToManyField('Business',related_name='business',null=True)
+    business = models.ForeignKey(Business,related_name='business',null=True)
 
     def save_profile(self):
         self.save()
@@ -64,8 +63,8 @@ class Business(models.Model):
 
     @classmethod
     def get_business(cls, profile):
-        business = Business.objects.filter(Business__pk = business)
-        return project
+        business = Business.objects.filter(Profile__pk = profile)
+        return business
     
     @classmethod
     def get_all_projects(cls):
