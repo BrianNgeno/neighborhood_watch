@@ -31,7 +31,7 @@ def logout(request):
     editing user profile fillform & submission
  
     '''
-# @login_required(login_url='/accounts/login/')
+@login_required(login_url='/accounts/login/')
 def edit(request):
     profile = User.objects.get(username=request.user)
 
@@ -45,3 +45,16 @@ def edit(request):
     else:
         form = ProfileForm()
     return render(request, 'profile/edit_profile.html', locals())
+
+@login_required(login_url='/accounts/login')
+def upload_business(request):
+    if request.method == 'POST':
+        businessform = BusinessForm(request.POST, request.FILES)
+        if businessform.is_valid():
+            upload = businessform.save(commit=False)
+            upload.profile = request.user.profile
+            upload.save()
+            return redirect('home_page')
+    else:
+        businessform = BusinessForm()
+    return render(request,'Business.html',locals())

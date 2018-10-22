@@ -6,6 +6,7 @@
 #register{
     background-image: url(../images/phones.jpeg);
     background-attachment: fixed;
+    height: 100vh;
 }
  
 .form-text{
@@ -16,17 +17,20 @@
 #one{
     background-image: url(../images/phones.jpeg);
     background-attachment: fixed; 
+    height: 100vh;
 }
 #nav{
     font-family: 'Righteous', cursive;
     color:white;
-    background-color: rgb(0,0,0,0.9);
+    background-color: rgba(0, 0, 0, 0.877);
     opacity: 0.9;
+    position: static;
 }
 #pro{
     background-image: url(../images/view.jpeg);
     background-attachment: fixed;
     background-size: 1400px 800px;
+    height: 100vh;
 }
 #proc{
     margin-top: 20px;
@@ -40,3 +44,24 @@
 #proc img{
     border-radius: 50%;
   }
+
+#business{
+    margin-top: 20px;
+    background-color: rgb(0,0,0,0.9);
+    color:white;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    font-family: 'Alegreya Sans SC', sans-serif;
+
+}
+#main-biz{
+    background-image: url(../images/background.jpeg);
+    background-attachment: fixed;
+    background-repeat: no-repeat;
+    height: 100vh;
+}
+#all{
+    background-image: url(../images/background.jpeg);
+    height: 100vh;
+    background-attachment: fixed;
+}

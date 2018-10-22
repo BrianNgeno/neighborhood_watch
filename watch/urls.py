@@ -6,6 +6,7 @@ from django.conf import settings
 urlpatterns=[
     url('^$',views.home_page,name = 'home_page'),
     url(r'^edit$', views.edit, name='edit_profile'),
+    url(r'^upload/$', views.upload_business, name='upload_business'),
 ]
 if settings.DEBUG:
     urlpatterns+= static(settings.MEDIA_URL, document_root = settings.MEDIA_ROOT)

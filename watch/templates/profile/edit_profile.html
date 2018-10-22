@@ -2,8 +2,9 @@
 {% load bootstrap4 %}
 
 {% block content %}
-<div class="container top" id="proc">
-    <div class="row edit-profile">
+<div class="container-fluid" id="all">
+<div class="jumbotron" id="proc">
+    <div class="row edit-profile" >
         <div class="col-md-4 edit-areas">
             <h3>Account</h3>
             {% if profile.profile.Profile_photo %}
@@ -22,5 +23,6 @@
             </form>
         </div>
     </div>
+</div>
 </div>
 {% endblock %}

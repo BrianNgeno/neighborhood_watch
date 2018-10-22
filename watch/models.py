@@ -46,7 +46,7 @@ class NeighborHood(models.Model):
     location = models.CharField(max_length = 50,null = True)
     occupants = models.CharField(max_length = 50,null = True)
     user = models.ForeignKey(User, null = True,related_name='business')
-
+    
 
 class Business(models.Model):
     name = models.CharField(max_length=50,blank=True)
@@ -54,7 +54,7 @@ class Business(models.Model):
     location = models.CharField(max_length = 50,null = True)
     user = models.ForeignKey(User, null = True,related_name='user')
     pub_date = models.DateTimeField(auto_now_add=True, null=True)
-
+    neighborHood = models.ForeignKey(User, null = True,related_name='neighborhood')
     class Meta:
         ordering = ['-pk']
 
