@@ -1,6 +1,6 @@
 {%extends "registration/base.html"%} {% load bootstrap4 %}
 {% block content %}
-<div class="container-fluid">
+<div class="container-fluid" id="register">
     <div class="row">
         <!-- Empty div -->
         <div class="col-md-4">
@@ -8,7 +8,7 @@
                 <div class="col-md-3"></div>
                 <div class="col-md-6">
                     <div class="row">
-                        <img src="../../static/images/phones.png" class="img-responsive">
+                        <img src="../../static/images/logo.png" class="img-responsive" height="100px;" width="100px;">
                         <!-- <div class="col-md-12">
                             <img src="../../static/images/phone1.png">
                         </div> -->
@@ -27,7 +27,7 @@
                     <div class="row">
                         <div class="col-md-2"></div>
                         <div class="col-md-8" style="text-align: center; color: dimgray;">
-                            <img src="../../static/images/name.png" width="200px;" height="60px;" class="img-responsive"
+                            <img src="../../static/images/name.png" width="200px;" height="100px;" class="img-responsive"
                                 style="margin-left: 0px;"><br>
                             Sign up to Know where and whats going down in your HOOD.
                         </div>
@@ -53,9 +53,9 @@
 
                     By signing up, you agree to our
                     <br>
-                    <a href="https://help.instagram.com/581066165581870" target="blank" style="color:gray">Terms</a>,
-                    <a href="https://help.instagram.com/519522125107875" target="blank" style="color:gray">Data Policy</a>
-                    and<br><a href="https://help.instagram.com/1896641480634370?ref=ig" target="blank" style="color:gray">Cookies
+                    <a href="#" target="blank" style="color:gray">Terms</a>,
+                    <a href="#" target="blank" style="color:gray">Data Policy</a>
+                    and<br><a href="#" target="blank" style="color:gray">Cookies
                         Policy.</a>
 
 
@@ -69,7 +69,6 @@
     </div>
     <!-- empty div -->
     <div class="col-md-4"></div>
-</div>
 </div>
 
 {% endblock %}

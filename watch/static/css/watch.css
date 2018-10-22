@@ -1,4 +1,19 @@
 #login{
     font-family:Cookie;
     font-size: 14px;
+    padding-bottom: 100px;
+}
+#register{
+    background-image: url(../images/phones.jpeg);
+    background-attachment: fixed;
+}
+ 
+.form-text{
+    type: hidden;
+    display: none;
+    visibility: hidden;
+}
+#one{
+    background-image: url(../images/phones.jpeg);
+    background-attachment: fixed; 
 }
