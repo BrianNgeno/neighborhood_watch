@@ -44,8 +44,7 @@ class Profile(models.Model):
 class NeighborHood(models.Model):
     name = models.CharField(max_length=50,blank=True)
     location = models.CharField(max_length = 50,null = True)
-    occupants = models.CharField(max_length = 50,null = True)
-    user = models.ForeignKey(User, null = True,related_name='business')
+    occupants = models.ForeignKey(User, null = True,related_name='business')
     
     def save_hood(self):
         self.save()

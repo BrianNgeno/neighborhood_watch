@@ -70,7 +70,4 @@ def add_hood(request):
             return redirect('home_page')
     else:
         hoodform = HoodForm()
-    return render(request,'add-hood.html',locals()
-
-
-    
+    return render(request,'add-hood.html',locals())

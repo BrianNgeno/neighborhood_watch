@@ -65,3 +65,8 @@
     height: 100vh;
     background-attachment: fixed;
 }
+#main-hood{
+    background-image: url(../images/background.jpeg);
+    height: 100vh;
+    background-attachment: fixed;
+}
