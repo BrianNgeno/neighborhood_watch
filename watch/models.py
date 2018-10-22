@@ -46,6 +46,5 @@ class NeighbourHood(models.Model):
     name = models.TextField(max_length=50,blank=True)
     location = models.TextField(max_length = 50,null = True)
     occupants = models.TextField(max_length = 50,null = True)
-    Admin = models.ForeignKey(related_name='user',null=True)
     user = models.OneToOneField(User,on_delete=models.CASCADE, primary_key=True)
 
