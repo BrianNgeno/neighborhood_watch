@@ -41,7 +41,7 @@ def edit(request):
             edit = form.save(commit=False)
             edit.user = request.user
             edit.save()
-            return redirect('profile/edit_profile')
+            return redirect('edit_profile')
     else:
         form = ProfileForm()
     return render(request, 'profile/edit_profile.html', locals())

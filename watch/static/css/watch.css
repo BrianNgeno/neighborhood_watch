@@ -28,3 +28,15 @@
     background-attachment: fixed;
     background-size: 1400px 800px;
 }
+#proc{
+    margin-top: 20px;
+    background-color: rgb(0,0,0,0.9);
+    color:white;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    font-family: 'Alegreya Sans SC', sans-serif;
+}
+
+#proc img{
+    border-radius: 50%;
+  }
