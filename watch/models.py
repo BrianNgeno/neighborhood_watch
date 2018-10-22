@@ -51,6 +51,8 @@ class NeighborHood(models.Model):
 
 class Business(models.Model):
     name = models.TextField(max_length=50,blank=True)
+    image = models.ImageField(upload_to = 'images/')
     location = models.TextField(max_length = 50,null = True)
     occupants = models.TextField(max_length = 50,null = True)
     user = models.ForeignKey(User, null = True,related_name='user')
+    pub_date = models.DateTimeField(auto_now_add=True, null=True)

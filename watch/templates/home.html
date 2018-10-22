@@ -1,1 +1,46 @@
-<p>works</p>
+{% extends 'base.html' %}
+{% load bootstrap4 %}
+{% block content %}
+{{ block.super }}
+<!-- <div class="container-fluid" id="pro">
+    <div class="row">
+
+
+        <div class="card mb-3" id="like">
+            <div class="card-header">
+                <a href="profile/{{item.profile.user.username}}/">
+                    <div class="row">
+                        <div class="">
+                            {% if item.profile.Profile_photo %}
+                            <img src="{{item.profile.Profile_photo.url}}" alt="img" width="50px" height="50px" style="border-radius: 50%; margin-left: 10px;"
+                                class="img-responsive">
+                            {% endif %}
+                        </div>
+                        <div class="col-md-2" style="margin-top: 10px;font-weight: bold;">
+                            <h4 class="card-title">{{item.profile.user.username}}</h4>
+                        </div>
+                    </div>
+                </a>
+            </div>
+            <img class="card-img-top img-responsive" src="{{item.Image.url}}" alt="Card image cap" />
+            <div class="card-body">
+
+                <p><strong>{{item.profile.user.username}}</strong> {{item.Image_caption}}</p>
+                <p class="card-text" style="font-size:14px;"><small class="text-muted">Uploaded
+                        {{item.pub_date|timesince}}</small></p>
+                <h5><strong>Comments</strong></h5>
+                <a class="view-more"></a>
+                <div id="commentspace{{item.id}}">
+                    {% for comment in item.comment.all|slice:":5"|slice:"::-1" %}
+                    <li class="comment-list__comment" style="list-style: none;">
+
+                        <a href="{% url 'profile' }" class="user">
+                            <strong>{{ comment.user.username }}</strong>
+                        </a>
+                        <span class="comment">{{ comment.name }}</span>
+                    </li>
+                    {% endfor %}
+            
+                </div>
+            </div> -->
+            {% endblock %}
