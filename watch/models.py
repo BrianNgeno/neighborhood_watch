@@ -19,7 +19,7 @@ class Profile(models.Model):
     Profile_photo = models.ImageField(upload_to = 'images/',blank=True)
     Bio = models.TextField(max_length = 50,null = True)
     user = models.OneToOneField(User,on_delete=models.CASCADE, primary_key=True)
-    neighbourhood = models.ManyToManyField('Neighborhood', related_name='neighborhood',max_length=30)
+    neighborhood = models.ManyToManyField('Neighborhood', related_name='neighborhood',max_length=30)
     email_address = models.TextField(max_length = 50,null = True)
   
     # business = models.ManyToManyField('Business',related_name='business',null=True)
@@ -46,14 +46,13 @@ class NeighborHood(models.Model):
     name = models.TextField(max_length=50,blank=True)
     location = models.TextField(max_length = 50,null = True)
     occupants = models.TextField(max_length = 50,null = True)
-    user = models.OneToOneField(User,on_delete=models.CASCADE, primary_key=True)
+    user = models.ForeignKey(User, null = True,related_name='business')
 
 
 class Business(models.Model):
     name = models.TextField(max_length=50,blank=True)
     image = models.ImageField(upload_to = 'images/')
     location = models.TextField(max_length = 50,null = True)
-    occupants = models.TextField(max_length = 50,null = True)
     user = models.ForeignKey(User, null = True,related_name='user')
     pub_date = models.DateTimeField(auto_now_add=True, null=True)
 
@@ -62,4 +61,13 @@ class Business(models.Model):
 
     def save_business(self):
         self.save()
+
+    @classmethod
+    def get_business(cls, profile):
+        business = Business.objects.filter(Business__pk = business)
+        return project
     
+    @classmethod
+    def get_all_projects(cls):
+        project = Project.objects.all()
+        return project
