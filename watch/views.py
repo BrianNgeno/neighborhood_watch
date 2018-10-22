@@ -71,3 +71,6 @@ def add_hood(request):
     else:
         hoodform = HoodForm()
     return render(request,'add-hood.html',locals()
+
+
+    

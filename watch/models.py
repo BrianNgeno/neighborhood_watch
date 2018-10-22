@@ -47,6 +47,14 @@ class NeighborHood(models.Model):
     occupants = models.CharField(max_length = 50,null = True)
     user = models.ForeignKey(User, null = True,related_name='business')
     
+    def save_hood(self):
+        self.save()
+
+    @classmethod
+    def get_all_hoods(cls):
+        hood = NeighborHood.objects.all()
+        return hood
+
 
 class Business(models.Model):
     name = models.CharField(max_length=50,blank=True)
@@ -67,7 +75,7 @@ class Business(models.Model):
         return business
     
     @classmethod
-    def get_all_projects(cls):
+    def get_all_business(cls):
         project = Project.objects.all()
         return project
 
