@@ -98,14 +98,14 @@ def hood(request,neighborhood_id):
 
     return render(request,'hood.html',locals())
 
-def one_post(request,image_id):
-    image = get_object_or_404(Image, pk=image_id)
+def one_post(request,post_id):
+    post = get_object_or_404(Post, pk=post_id)
     if request.method == 'POST':
         form = CommentForm(request.POST)
         if form.is_valid():
             comment = form.save(commit=False)
             comment.user = request.user
-            comment.image = image
+            comment.post = post
             comment.save()
-        return render(request, 'main_pages/commentspace.html', locals())
-    return redirect('home_page')
+        return render(request, 'commentspace.html', locals())
+    return redirect('hood')
