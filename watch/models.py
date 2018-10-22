@@ -105,3 +105,11 @@ class Comment(models.Model):
 
     def __str__(self):
         return self.name
+
+    class Meta:
+        ordering = ['-id']
+
+    def save_comment(self):
+        self.save()
+
+    
