@@ -1,9 +1,10 @@
 from django.shortcuts import render,redirect,get_object_or_404
 from django.http import HttpResponse,Http404
 from django.contrib.auth.decorators import login_required
-# from .models import Project,Profile
+from .models import Profile,User,Post,Business,NeighborHood
 from django.contrib.auth.models import User
 import datetime as dt
+from .forms import BusinessForm,ProfileForm
 
 # Create your views here.
 
@@ -25,3 +26,22 @@ def home_page(request):
     return render(request,'home.html',locals())
 def logout(request):
     return render(request, 'home.html')
+
+'''
+    editing user profile fillform & submission
+ 
+    '''
+# @login_required(login_url='/accounts/login/')
+def edit(request):
+    profile = User.objects.get(username=request.user)
+
+    if request.method == 'POST':
+        form = ProfileForm(request.POST, request.FILES)
+        if form.is_valid():
+            edit = form.save(commit=False)
+            edit.user = request.user
+            edit.save()
+            return redirect('edit_profile')
+    else:
+        form = ProfileForm()
+    return render(request, 'edit_profile.html', locals())
