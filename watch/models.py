@@ -42,9 +42,15 @@ class Profile(models.Model):
         userprof = Profile.objects.filter(user__username__icontains = name)
         return userprof
 
-class NeighbourHood(models.Model):
+class NeighborHood(models.Model):
     name = models.TextField(max_length=50,blank=True)
     location = models.TextField(max_length = 50,null = True)
     occupants = models.TextField(max_length = 50,null = True)
     user = models.OneToOneField(User,on_delete=models.CASCADE, primary_key=True)
 
+
+class Business(models.Model):
+    name = models.TextField(max_length=50,blank=True)
+    location = models.TextField(max_length = 50,null = True)
+    occupants = models.TextField(max_length = 50,null = True)
+    user = models.ForeignKey(User, null = True,related_name='user')
