@@ -60,7 +60,6 @@ class NeighborHood(models.Model):
 class Business(models.Model):
     name = models.CharField(max_length=50,blank=True)
     image = models.ImageField(upload_to = 'images/')
-    location = models.CharField(max_length = 50,null = True)
     user = models.ForeignKey(User, null = True,related_name='user')
     pub_date = models.DateTimeField(auto_now_add=True, null=True)
     neighborHood = models.ForeignKey(User, null = True,related_name='neighborhood')
@@ -87,9 +86,22 @@ class Post(models.Model):
     user = models.ForeignKey(User, null = True,related_name='post')
     pub_date = models.DateTimeField(auto_now_add=True, null=True)
 
-class Join(models.Model):
-   user_id = models.OneToOneField(User)
-   hood_id = models.ForeignKey(NeighborHood)
+    def save_post(self):
+        self.save()
 
-   def __str__(self):
-       return self.user_id
+    def delete_post(self):
+        self.delete()
+
+    @classmethod
+    def get_hood_posts(cls,id):
+        posts = Post.objects.filter(id = id)
+        return posts
+
+class Comment(models.Model):
+    name = models.CharField(max_length=30)
+    post = models.ForeignKey(Post,null = True)
+    neighborhood = models.ForeignKey(NeighborHood,related_name='comment')
+
+
+    def __str__(self):
+        return self.name

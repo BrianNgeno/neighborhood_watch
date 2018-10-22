@@ -2,9 +2,23 @@
 {% load bootstrap4 %}
 {% block content %}
 {{ block.super }}
-{% for item in hood %}
-<p>{{item.name}}</p>
-<p>{{item.location}}</p>
-<p>{{item.occupants.count}}</p>
+{% if hood %}
+{% for item in single_hood %}
+
+<div class="col-md-6 offset-md-3">
+    <div class="card border-warning mb-3">
+        <div class="card-body text-danger">
+            <h1 class="card-title ">{{item.name}}</h1>
+            <p class="card-text">{{item.location}}</p>
+        </div>
+    </div>
+</div>
+
+
 {% endfor %}
+
+{% else %}
+
+<h1>This hood has no posts yet. Be the first to post</h1>
+{% endif %}
 {% endblock %}

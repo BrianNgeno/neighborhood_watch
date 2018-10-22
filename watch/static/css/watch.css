@@ -18,6 +18,7 @@
     background-image: url(../images/phones.jpeg);
     background-attachment: fixed; 
     height: 100vh;
+    font-family: 'Alegreya Sans SC', sans-serif;
 }
 #nav{
     font-family: 'Righteous', cursive;
@@ -31,6 +32,7 @@
     background-attachment: fixed;
     background-size: 1400px 800px;
     height: 100vh;
+
 }
 #proc{
     margin-top: 20px;
@@ -69,7 +71,9 @@
     background-image: url(../images/background.jpeg);
     height: 100vh;
     background-attachment: fixed;
+    font-family: 'Alegreya Sans SC', sans-serif;
 }
 #hoody{
     margin-top: 20px;
+    font-family: 'Alegreya Sans SC', sans-serif;
 }

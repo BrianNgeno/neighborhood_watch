@@ -73,24 +73,6 @@ def add_hood(request):
     else:
         hoodform = HoodForm()
     return render(request,'add-hood.html',locals())
-
-@login_required(login_url = '/accounts/login')
-def all_hoods(request):
-
-   if request.user.is_authenticated:
-       if Join.objects.filter(user_id=request.user).exists():
-           hood = Neighbourhood.objects.get(pk=request.user.join.hood_id.id)
-           businesses = Business.objects.filter(hood=request.user.join.hood_id.id)
-        #    posts = Post.objects.filter(hood=request.user.join.hood_id.id)
-           print(posts)
-           return render(request, "hood.html", locals())
-       else:
-           neighbourhoods = Neighbourhood.objects.all()
-           return render(request, 'hood.html', locals())
-   else:
-       neighbourhoods = Neighbourhood.objects.all()
-
-       return render(request, 'hood.html', locals())
     
 
 @login_required(login_url='/accounts/login')
@@ -99,7 +81,7 @@ def join(request,neighborhood_id):
     current_user = request.user
     current_user.profile.neighborhood = hood
     current_user.profile.save()
-    return redirect('')
+    return redirect('hood',neighborhood_id)
 
 @login_required(login_url='/accounts/login')
 def leave(request,neighborhood_id):
@@ -108,6 +90,10 @@ def leave(request,neighborhood_id):
     current_user.profile.save()
     return redirect('home_page')
 
-def single_hoods(request,neighborhood_id):
-    hood = NeighborHood.objects.get(pk="neighborhood_id")
-    return render(request,'hood.html', locals())
+@login_required(login_url='/accounts/login/')
+def hood(request,neighborhood_id):
+    current_user = request.user
+    hood_name = current_user.profile.neighborhood
+    single_hood = Post.get_hood_posts(id = neighborhood_id)
+
+    return render(request,'hood.html',locals())
