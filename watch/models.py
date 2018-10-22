@@ -42,6 +42,7 @@ class Profile(models.Model):
         return userprof
 
 class NeighborHood(models.Model):
+    view = models.ImageField(upload_to = 'images/',blank=True)
     name = models.CharField(max_length=50,blank=True)
     location = models.CharField(max_length = 50,null = True)
     occupants = models.ForeignKey(User, null = True,related_name='business')

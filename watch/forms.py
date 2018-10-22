@@ -16,4 +16,4 @@ class ProfileForm(forms.ModelForm):
 class HoodForm(forms.ModelForm):
     class Meta:
         model = NeighborHood
-        exclude= ['user']
+        exclude= ['occupants']
