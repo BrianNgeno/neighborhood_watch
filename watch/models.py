@@ -56,3 +56,10 @@ class Business(models.Model):
     occupants = models.TextField(max_length = 50,null = True)
     user = models.ForeignKey(User, null = True,related_name='user')
     pub_date = models.DateTimeField(auto_now_add=True, null=True)
+
+    class Meta:
+        ordering = ['-pk']
+
+    def save_business(self):
+        self.save()
+    
