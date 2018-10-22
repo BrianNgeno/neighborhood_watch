@@ -20,6 +20,8 @@ class Profile(models.Model):
     Bio = models.TextField(max_length = 50,null = True)
     user = models.OneToOneField(User,on_delete=models.CASCADE, primary_key=True)
     neighbourhood = models.ManyToManyField('Neighborhood', related_name='neighborhood',max_length=30)
+    email_address = models.TextField(max_length = 50,null = True)
+  
     # business = models.ManyToManyField('Business',related_name='business',null=True)
 
     def save_profile(self):
@@ -41,8 +43,9 @@ class Profile(models.Model):
         return userprof
 
 class NeighbourHood(models.Model):
-    name = models.ImageField(upload_to = 'images/',blank=True)
+    name = models.TextField(max_length=50,blank=True)
     location = models.TextField(max_length = 50,null = True)
     occupants = models.TextField(max_length = 50,null = True)
-    Admin = models.ForeignKey(related_name='user')
+    Admin = models.ForeignKey(related_name='user',null=True)
     user = models.OneToOneField(User,on_delete=models.CASCADE, primary_key=True)
+

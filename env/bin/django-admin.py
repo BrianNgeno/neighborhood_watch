@@ -1,4 +1,4 @@
-#!/home/bknngeno/Documents/moringa_core/Django/neighborhood/env/bin/python3.6
+#!/home/bknngeno/Documents/moringa_core/Django/neighborhood/env/bin/python
 from django.core import management
 
 if __name__ == "__main__":
