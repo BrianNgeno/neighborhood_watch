@@ -1,7 +1,7 @@
 from django.shortcuts import render,redirect,get_object_or_404
 from django.http import HttpResponse,Http404
 from django.contrib.auth.decorators import login_required
-from .models import Profile,User,Post,Business,NeighborHood
+from .models import Profile,User,Post,Business,NeighborHood,Post
 from django.contrib.auth.models import User
 import datetime as dt
 from .forms import BusinessForm,ProfileForm,HoodForm
@@ -25,6 +25,7 @@ def home_page(request):
     date = dt.date.today()
     hoods = NeighborHood.objects.all()
     return render(request,'home.html',locals())
+
 def logout(request):
     return render(request, 'home.html')
 
@@ -73,19 +74,40 @@ def add_hood(request):
         hoodform = HoodForm()
     return render(request,'add-hood.html',locals())
 
-def view_hoods(request):
-    hoods = NeighborHood.objects.get_all()
-    return render(request,'home.html', locals())
+@login_required(login_url = '/accounts/login')
+def all_hoods(request):
 
+   if request.user.is_authenticated:
+       if Join.objects.filter(user_id=request.user).exists():
+           hood = Neighbourhood.objects.get(pk=request.user.join.hood_id.id)
+           businesses = Business.objects.filter(hood=request.user.join.hood_id.id)
+        #    posts = Post.objects.filter(hood=request.user.join.hood_id.id)
+           print(posts)
+           return render(request, "hood.html", locals())
+       else:
+           neighbourhoods = Neighbourhood.objects.all()
+           return render(request, 'hood.html', locals())
+   else:
+       neighbourhoods = Neighbourhood.objects.all()
+
+       return render(request, 'hood.html', locals())
+    
+
+@login_required(login_url='/accounts/login')
 def join(request,neighborhood_id):
     hood = NeighborHood.objects.get(id=neighborhood_id)
     current_user = request.user
     current_user.profile.neighborhood = hood
     current_user.profile.save()
-    return redirect('home_page')
+    return redirect('')
 
+@login_required(login_url='/accounts/login')
 def leave(request,neighborhood_id):
     current_user = request.user
     current_user.profile.neighborhood = None
     current_user.profile.save()
     return redirect('home_page')
+
+def single_hoods(request,neighborhood_id):
+    hood = NeighborHood.objects.get(pk="neighborhood_id")
+    return render(request,'hood.html', locals())

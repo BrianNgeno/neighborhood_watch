@@ -86,3 +86,10 @@ class Post(models.Model):
     description = models.TextField(max_length = 50,null = True)
     user = models.ForeignKey(User, null = True,related_name='post')
     pub_date = models.DateTimeField(auto_now_add=True, null=True)
+
+class Join(models.Model):
+   user_id = models.OneToOneField(User)
+   hood_id = models.ForeignKey(NeighborHood)
+
+   def __str__(self):
+       return self.user_id

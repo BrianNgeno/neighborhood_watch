@@ -1,0 +1,10 @@
+{% extends 'base.html' %}
+{% load bootstrap4 %}
+{% block content %}
+{{ block.super }}
+{% for item in hood %}
+<p>{{item.name}}</p>
+<p>{{item.location}}</p>
+<p>{{item.occupants.count}}</p>
+{% endfor %}
+{% endblock %}
