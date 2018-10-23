@@ -79,6 +79,11 @@ class Business(models.Model):
         project = Project.objects.all()
         return project
 
+    @classmethod
+    def search(cls,search_term):
+        biz = cls.objects.filter(name__icontains=search_term)
+        return biz
+
 class Post(models.Model):
     name = models.CharField(max_length=50,blank=True)
     image = models.ImageField(upload_to = 'images/')
