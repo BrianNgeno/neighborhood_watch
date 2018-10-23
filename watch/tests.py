@@ -1,5 +1,5 @@
 from django.test import TestCase
-from .models import Comment, Business
+from .models import Comment, Business,Profile,Post
 # Create your tests here.
 class CommentTestCase(TestCase):
     '''
