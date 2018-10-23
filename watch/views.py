@@ -131,3 +131,14 @@ def add_post(request):
     else:
         postform = PostForm()
     return render(request,'add-post.html',locals())
+
+@login_required(login_url='/accounts/login')
+def search_results(request):
+    business= Business.objects.all()
+    hood = NeighborHood.objects.get(id=request.user.profile.neighborhood.id)
+    if 'business' in request.GET and request.GET["business"]:
+        search_term = request.GET.get("business")
+        searched_business = Business.search(search_term)
+        message = f"{search_term}"
+
+        return render(request, 'search.html',locals())
