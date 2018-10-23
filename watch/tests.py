@@ -38,3 +38,23 @@ class profileTestCLass(TestCase):
         self.prof.save_profile()
         bio = Profile.objects.all()
         self.assertTrue(len(bio)>0)
+
+class BusinessTestCase(TestCase):
+    '''
+    setup
+    '''
+    def setUp(self):
+        self.business = Business(name='soko',image='soko.jpeg',pub_date='12,Oct,2018',user='1',NeighborHood='1')
+    '''
+    test instance of business
+    '''
+    def test_instance(self):
+        self.assertTrue(isinstance(self.business,Business))
+        '''
+        test for save instance of business
+        '''
+    def test_save_business(self):
+        self.business.save_business()
+        name = Business.objects.all()
+        self.assertTrue(len(name)>0)
+

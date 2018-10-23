@@ -5,6 +5,8 @@
 <div class="container-fluid" id="single-hoody">
     <h6 style="text-align: center">{{single_hood.name}}</h6>
     <br>
+    <h6 style="text-align: center">{{single_hood.occupants.count}}</h6>
+    <br>
     <a href="{% url 'leave' neighborhood_id=single_hood.id %}" class="btn btn-outline-danger">Leave Neighborhood</a>
     <a href="{% url 'add_post' %}" class="btn btn-outline-primary">Add Post</a>
     <a href="{% url 'upload_business' %}" class="btn btn-outline-primary">Include Business</a>
