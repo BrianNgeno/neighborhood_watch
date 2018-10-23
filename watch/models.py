@@ -62,7 +62,7 @@ class Business(models.Model):
     image = models.ImageField(upload_to = 'images/')
     user = models.ForeignKey(User, null = True,related_name='user')
     pub_date = models.DateTimeField(auto_now_add=True, null=True)
-    neighborHood = models.ForeignKey(User, null = True,related_name='neighborhood')
+    neighborHood = models.ForeignKey(NeighborHood, null = True,related_name='business')
     class Meta:
         ordering = ['-pk']
 
@@ -85,7 +85,8 @@ class Post(models.Model):
     description = models.TextField(max_length = 50,null = True)
     user = models.ForeignKey(User, null = True,related_name='post')
     pub_date = models.DateTimeField(auto_now_add=True, null=True)
-
+    neighborHood = models.ForeignKey(NeighborHood, null = True,related_name='posts')
+    
     def save_post(self):
         self.save()
 

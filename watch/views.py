@@ -1,7 +1,7 @@
 from django.shortcuts import render,redirect,get_object_or_404
 from django.http import HttpResponse,Http404
 from django.contrib.auth.decorators import login_required
-from .models import Profile,User,Post,Business,NeighborHood
+from .models import Profile,User,Post,Business,NeighborHood,Comment
 from django.contrib.auth.models import User
 import datetime as dt
 from .forms import BusinessForm,ProfileForm,HoodForm,PostForm,CommentForm
@@ -50,13 +50,15 @@ def edit(request):
 
 @login_required(login_url='/accounts/login')
 def upload_business(request):
+    hood = NeighborHood.objects.get(id=request.user.profile.neighborhood.id)
     if request.method == 'POST':
         businessform = BusinessForm(request.POST, request.FILES)
         if businessform.is_valid():
             upload = businessform.save(commit=False)
-            upload.profile = request.user.profile
+            upload.user=request.user
+            upload.neighborHood=request.user.profile.neighborhood
             upload.save()
-            return redirect('home_page')
+        return redirect('hood',request.user.profile.neighborhood.id)
     else:
         businessform = BusinessForm()
     return render(request,'Business.html',locals())
@@ -94,7 +96,11 @@ def leave(request,neighborhood_id):
 def hood(request,neighborhood_id):
     current_user = request.user
     hood_name = current_user.profile.neighborhood
-    single_hood = Post.get_hood_posts(id = neighborhood_id)
+    single_hood = NeighborHood.objects.get(id = request.user.profile.neighborhood.id)
+    business=Business.objects.get(id = request.user.profile.neighborhood.id)
+    comments = Comment.objects.all()
+    form = CommentForm(instance=request.user)
+    print(business)
 
     return render(request,'hood.html',locals())
 
@@ -109,3 +115,19 @@ def one_post(request,post_id):
             comment.save()
         return render(request, 'commentspace.html', locals())
     return redirect('hood')
+
+@login_required(login_url='/accounts/login')
+def add_post(request):
+    hood = NeighborHood.objects.get(id=request.user.profile.neighborhood.id)
+    if request.method == 'POST':
+        postform = PostForm(request.POST, request.FILES)
+        if postform.is_valid():
+            post = postform.save(commit=False)
+            post.profile = request.user.profile
+            post.user = request.user
+            post.neighborHood=request.user.profile.neighborhood
+            post.save()
+            return redirect('hood',request.user.profile.neighborhood.id)
+    else:
+        postform = PostForm()
+    return render(request,'add-post.html',locals())

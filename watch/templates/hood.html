@@ -2,59 +2,39 @@
 {% load bootstrap4 %}
 {% block content %}
 {{ block.super }}
-{% if hood %}
-{% for item in single_hood %}
-<div class="row">
-    <div class="card-body col-md-3">
-        <h1 class="card-title ">{{item.name}}</h1>
-        <p class="card-text">{{item.location}}</p>
-    </div>
-</div>
+<div class="container-fluid" id="single-hoody">
+    <h6 style="text-align: center">{{single_hood.name}}</h6>
+    <br>
+    <a href="{% url 'leave' neighborhood_id=single_hood.id %}" class="btn btn-outline-danger">Leave Neighborhood</a>
+    <a href="{% url 'add_post' %}" class="btn btn-outline-primary">Add Post</a>
+    <a href="{% url 'upload_business' %}" class="btn btn-outline-primary">Include Business</a>
 
 
-{% endfor %}
-<a href="#" class="btn btn-outline-primary">Add Post</a>
-<a href="#" class="btn btn-outline-primary">Include Business</a>
-{% else %}
-<h6>This hood has no posts yet. Be the first to post</h6>
-<div class="container-fluid">
-    {% for item in post %}
+    <h5>Businesses</h5>
     <div class="row">
-        <div class="col-md-3">
-            <div id="commentspace{{item.id}}">
-                {% for comment in item.comment.all|slice:":5"|slice:"::-1" %}
-                <li class="comment-list__comment" style="list-style: none;">
-
-                    <a href="{% url 'profile' }" class="user">
-                        <strong>{{ comment.user.username }}</strong>
-                    </a>
-                    <span class="comment">{{ comment.name }}</span>
-                </li>
-                {% endfor %}
+        {% for biz in single_hood.business.all %}
+        <div class="card" style="width:400px" id="biz">
+            <img class="card-img-top img-responsive" src="{{biz.image.url}}" alt="Card image">
+            <div class="card-body">
+                <h4 class="card-title">{{biz.name}}</h4>
             </div>
-            {% if request.user.is_authenticated %}
-            <section class="input-row">
-                <i class="fa # submit-like" aria-hidden="true"></i>
-                <div class="comment-input-wrapper">
-                    <form action="{% url 'comment' image_id=item.id %}" id="commentform{{item.id}}" method="post"
-                        onsubmit="comment({{item.id}});return false;">
-                        {% csrf_token %}
-                        <input class="add-comment" name="name" id="comment{{item.id}}" type="text" placeholder="Add a comment..."
-                            style="padding-inline-end: 20px;">
-
-                    </form>
-                </div>
-                <div class="hidden-data {{ item.pk }}" style="display: none;">
-                    <span class="post-pk">{{ item.pk }}</span>
-                </div>
-            </section>
-            {% endif %}
         </div>
+        {% endfor %}
     </div>
-    {% endfor %}
+
+    <h5>Updates</h5>
+    <div class="row">
+        {% for conv in single_hood.posts.all %}
+        <div class="card" style="width:400px" id="pst">
+            <img class="card-img-top" src="{{conv.image.url}}" alt="Card image">
+            <div class="card-body">
+                <h6 class="card-title">{{conv.name}}</h6>
+                <p class="card-text">{{conv.user.username}}</p>
+                <h6 class="card-text">{{conv.description}}</h6>
+                <h6 class="card-text">{{conv.pub_date}}</h6>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
 </div>
-</div>
-</div>
-</div>
-{% endif %}
 {% endblock %}

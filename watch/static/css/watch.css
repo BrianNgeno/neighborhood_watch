@@ -25,10 +25,9 @@
     color:white;
     background-color: rgba(0, 0, 0, 0.877);
     opacity: 0.9;
-    position: static;
 }
 #pro{
-    background-image: url(../images/view.jpeg);
+    background-image:linear-gradient(rgba(0, 0, 0, 0.9),rgba(0,0,0,0.9)),url(../images/view.jpeg);
     background-attachment: fixed;
     background-size: 1400px 800px;
     height: 100vh;
@@ -74,6 +73,33 @@
     font-family: 'Alegreya Sans SC', sans-serif;
 }
 #hoody{
-    margin-top: 20px;
+    margin-top: 40px;
+    margin-left: 10px;
+    margin-right: 10px;
     font-family: 'Alegreya Sans SC', sans-serif;
+    color:white;
+    background-color: rgba(0, 0, 0, 0.877);
+    opacity: 0.9;
+}
+#pst{
+    margin-top: 10px;
+    margin-left: 10px;
+    margin-right: 10px;
+    font-family: 'Alegreya Sans SC', sans-serif;
+}
+#biz{
+    margin-top: 10px;
+    margin-left: 10px;
+    margin-right: 10px;
+    font-family: 'Alegreya Sans SC', sans-serif;
+}
+#single-hoody{
+    font-family: 'Alegreya Sans SC', sans-serif; 
+    background-image:linear-gradient(rgba(0, 0, 0, 0.8),rgba(0,0,0,0.8)),url(../images/bg2.jpeg);
+    height: 100%;
+    background-attachment: fixed;
+    color: white;
+}
+#single-hoody .card{
+    background-color: rgb(0,0,0,0.9);
 }
