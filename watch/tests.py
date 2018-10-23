@@ -19,3 +19,22 @@ class CommentTestCase(TestCase):
         self.comment.save_comment()
         name = Comment.objects.all()
         self.assertTrue(len(name)>0)
+
+
+class profileTestCLass(TestCase):
+    '''
+    setup self instance of profile
+    '''
+    def setUp(self):
+        self.prof = Profile(Bio='Live the moment')
+    
+    ''' 
+    test instance of profile
+    '''
+    def test_instance(self):
+        self.assertTrue(isinstance(self.prof,Profile))
+
+    def test_save_profile(self):
+        self.prof.save_profile()
+        bio = Profile.objects.all()
+        self.assertTrue(len(bio)>0)
